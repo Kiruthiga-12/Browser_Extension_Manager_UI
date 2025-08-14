@@ -4,9 +4,13 @@ Browser Extension manager UI is created using
 #js
 
 #responsive web design
+
 #toggle between active and inactive states
+
 #remove extensions from the list
+
 #filter active and inactive extensions
+
 #select color theme - dark and light
 
 #sample json data that serves as backend
