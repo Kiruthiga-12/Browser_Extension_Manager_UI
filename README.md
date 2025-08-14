@@ -14,4 +14,6 @@ Browser Extension manager UI is created using
 Live Demo:
 Frontend:
 
-Backend:
+
+Backend: 
+https://browser-extension-manager-ui-backend.onrender.com/users

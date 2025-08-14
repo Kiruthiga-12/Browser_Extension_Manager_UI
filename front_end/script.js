@@ -1,6 +1,6 @@
 let arr = [];
 let list =  document.getElementById("list");
-
+BACKEND_URL = 'https://browser-extension-manager-ui-backend.onrender.com/users';
 
 fetchAll();
 
@@ -27,7 +27,7 @@ inactive_id.addEventListener("click",()=>{
 })
 
 async function fetchAll(){
-await fetch('http://localhost:3000/users')
+await fetch(`${BACKEND_URL}`)
 .then((res)=>res.json())
 .then((data)=>{
    arr=[];
@@ -50,7 +50,7 @@ await fetch('http://localhost:3000/users')
 }
 
 async function fetchInactive(){
-await fetch('http://localhost:3000/users?isActive=false')
+await fetch(`${BACKEND_URL}?isActive=false`)
 .then((res)=>res.json())
 .then((data)=>{
    arr=[];
@@ -70,7 +70,7 @@ displayData(arr);
   } 
 }
 async function fetchActive(){
-await   fetch('http://localhost:3000/users?isActive=true')
+await   fetch(`${BACKEND_URL}?isActive=true`)
 .then((res)=>res.json())
 .then((data)=>{
   arr=[];
@@ -160,12 +160,13 @@ for(let i =0;i<rmv.length;i++){
         let pattern = /[0-9]{1}/g;
         let testid = rmv[i].id.match(pattern).join('');
         let rmv_id = testid
-       fetch(`http://localhost:3000/users/${rmv_id}`,{method:'DELETE'})
+       fetch(`${BACKEND_URL}/${rmv_id}`,{method:'DELETE'})
        .then((res)=>{
         if(res.status == 200)
             alert('Data Deleted!!')
         else
             alert('Please try again!')
+          window.location.reload(true);
        })
        
     })
@@ -179,7 +180,7 @@ for(let i =0;i<togl.length;i++){
         let pattern = /[0-9]{1}/g;
         let testid = togl[i].id.match(pattern).join('');
         let rmv_id = testid
-       fetch(`http://localhost:3000/users/${rmv_id}`,{
+       fetch(`${BACKEND_URL}/${rmv_id}`,{
         method:'PATCH',
         headers:{'Content-Type':'application/json'},
         body: JSON.stringify({"isActive":val})
@@ -188,7 +189,8 @@ for(let i =0;i<togl.length;i++){
         if(res.status == 200)
             alert('Data Updated!!')
         else
-            alert('Please try again!')
+            alert('Please try again!');
+          window.location.reload(true)
        })
        
     })
